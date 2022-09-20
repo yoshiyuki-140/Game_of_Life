@@ -147,13 +147,7 @@ class GameOfLife:
         if self.world[(y+1) % self.world_size[1]][(x+1) % self.world_size[0]] == True:
             self.count += 1
 
-<<<<<<< HEAD
 # game mode
-=======
-# game modes
-
-
->>>>>>> create_line
 def pause():
     screen = pygame.display.get_surface()
     font = pygame.font.SysFont(None, 80)
