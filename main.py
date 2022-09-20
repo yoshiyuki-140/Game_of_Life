@@ -1,6 +1,7 @@
 #coding:utf-8
 # Author : Yoshiyuki Kurose
 
+
 from copy import deepcopy
 from random import choice
 import sys
