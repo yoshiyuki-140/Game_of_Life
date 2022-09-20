@@ -184,6 +184,11 @@ while running:
     for event in pygame.event.get():
         if event.type == KEYDOWN and event.key == K_SPACE:
             running = False
+        if event.type == QUIT:
+            sys.exit()
+        if event.type == KEYDOWN and event.key == K_ESCAPE:
+            sys.exit()
+
     pygame.display.flip()
 #
 screen.fill(bg)
