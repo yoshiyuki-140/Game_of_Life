@@ -1,5 +1,5 @@
 #coding:utf-8
-
+# Author : Yoshiyuki Kurose
 
 from copy import deepcopy
 from random import choice
@@ -9,7 +9,7 @@ import pygame
 
 # Parameters
 Window = pygame.Rect(0, 0, 1000, 600)
-world_size = '10x10'
+world_size = '100x60'
 world_size = [int(f) for f in world_size.split('x')]  # <- return list object
 line_width = 1
 fps = 60
@@ -24,8 +24,6 @@ Blue = (0, 0, 255)
 Black = (0, 0, 0)
 
 # Objects
-
-
 class Cell(pygame.sprite.Sprite):
     def __init__(self) -> None:
         super().__init__()
@@ -38,24 +36,20 @@ class Cell(pygame.sprite.Sprite):
                                    int((Window.height - line_width*(world_size[1]-1)) / world_size[1]))
                        for x in range(world_size[0])]
                       for y in range(world_size[1])]
-        self.game_of_life = GameOfLife()
+        self.game_of_life = GameOfLife(world_size=world_size)
         self.game_of_life.glider_init()
 
     def update(self):
-        self.game_of_life.main_algorithm()
         for y in range(world_size[1]):
             for x in range(world_size[0]):
-                #if self.game_of_life.world[y][x] == True and self.game_of_life.previous_world[y][x] == False:
                 if self.game_of_life.world[y][x] == True:
                     pygame.draw.rect(self.screen, Black, self.rects[y][x])
-
-                #elif self.game_of_life.world[y][x] == False and self.game_of_life.previous_world[y][x] == True:
                 else:
                     pygame.draw.rect(self.screen, White, self.rects[y][x])
 
 
 class GameOfLife:
-    def __init__(self):
+    def __init__(self,world_size:tuple):
         #世界の大きさdefoultで10
         self.world_size = world_size
 
@@ -66,6 +60,7 @@ class GameOfLife:
             self.world_size[0])] for y in range(self.world_size[1])]
 
         self.tmp_world = deepcopy(self.world)
+        self.previous_world = deepcopy(self.world)
 
         self.count = 0
 
@@ -98,18 +93,17 @@ class GameOfLife:
         """
         for i in range(self.world_size[1]):
             for j in range(self.world_size[0]):
-
                 self.tmp_world[i][j] = self.life_or_death(j, i)
         self.world = deepcopy(self.tmp_world)
 
-    def toggle_object(self, i, j):
-        """ (i,j) は ガウス平面の (x,y)座標 として扱え
+    def toggle_object(self, x, y):
+        """ ガウス平面の (x,y)座標 として扱え
 
         Args:
-            i (int): 座標データなので1以上
-            j (int): 座標データなので1以上
+            x (int): 座標データなので1以上
+            y (int): 座標データなので1以上
         """
-        self.world[i-1][j-1] = not self.world[i-1][j-1]
+        self.world[y-1][x-1] = not self.world[y-1][x-1]
 
     def life_or_death(self, x, y):
         """次の時代lifeならTrueを返すdeathならFalseをかえす
@@ -162,6 +156,9 @@ def pause():
     screen.blit(Pause_msg, (Window.centerx - Pause_msg.get_width() //
                 2, Window.centery - Pause_msg.get_height()//2))
 
+# buttons handling
+def click_cell(rect):
+    screen = pygame.display.get_surface()
 
 # main stream
 pygame.init()
@@ -204,11 +201,23 @@ while True:
         if event.type == KEYDOWN and event.key == K_SPACE:
             game_status = not game_status
 
+        # 
+        if event.type == MOUSEBUTTONDOWN and event.button == 1:
+            mouse_rect = pygame.Rect(event.pos[0],event.pos[1],1,1)
+            #
+            for y in range(world_size[1]):
+                for x in range(world_size[0]):
+                    #
+                    if cell.rects[y][x].contains(mouse_rect):
+                        cell.game_of_life.toggle_object(x+1,y+1)
+
 
     #
     if game_status:
+        cell.game_of_life.main_algorithm()
         cell.update()
     else:
+        cell.update()
         pause()
 
     #
