@@ -24,6 +24,8 @@ Blue = (0, 0, 255)
 Black = (0, 0, 0)
 
 # Objects
+
+
 class Cell(pygame.sprite.Sprite):
     def __init__(self) -> None:
         super().__init__()
@@ -32,7 +34,8 @@ class Cell(pygame.sprite.Sprite):
             0, 0, int(Window.width/world_size[0]), int(Window.height/world_size[1]))
         self.rects = [[pygame.Rect(x*(self.rect.width+line_width),
                                    y*(self.rect.height+line_width),
-                                   int((Window.width - line_width *(world_size[0]-1))/world_size[0]),
+                                   int((Window.width - line_width *
+                                       (world_size[0]-1))/world_size[0]),
                                    int((Window.height - line_width*(world_size[1]-1)) / world_size[1]))
                        for x in range(world_size[0])]
                       for y in range(world_size[1])]
@@ -49,7 +52,7 @@ class Cell(pygame.sprite.Sprite):
 
 
 class GameOfLife:
-    def __init__(self,world_size:tuple):
+    def __init__(self, world_size: tuple):
         #世界の大きさdefoultで10
         self.world_size = world_size
 
@@ -142,12 +145,15 @@ class GameOfLife:
             self.count += 1
 
 # game mode
+
+
 def start():
     screen = pygame.display.get_surface()
     font = pygame.font.SysFont(None, 100)
     Start_msg = font.render("START", True, Red)
     screen.blit(Start_msg, (Window.centerx - Start_msg.get_width() //
                 2, Window.centery - Start_msg.get_height()//2))
+
 
 def pause():
     screen = pygame.display.get_surface()
@@ -157,8 +163,11 @@ def pause():
                 2, Window.centery - Pause_msg.get_height()//2))
 
 # buttons handling
+
+
 def click_cell(rect):
     screen = pygame.display.get_surface()
+
 
 # main stream
 pygame.init()
@@ -201,16 +210,15 @@ while True:
         if event.type == KEYDOWN and event.key == K_SPACE:
             game_status = not game_status
 
-        # 
+        #
         if event.type == MOUSEBUTTONDOWN and event.button == 1:
-            mouse_rect = pygame.Rect(event.pos[0],event.pos[1],1,1)
+            mouse_rect = pygame.Rect(event.pos[0], event.pos[1], 1, 1)
             #
             for y in range(world_size[1]):
                 for x in range(world_size[0]):
                     #
                     if cell.rects[y][x].contains(mouse_rect):
-                        cell.game_of_life.toggle_object(x+1,y+1)
-
+                        cell.game_of_life.toggle_object(x+1, y+1)
 
     #
     if game_status:
