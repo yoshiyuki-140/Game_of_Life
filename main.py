@@ -9,7 +9,7 @@ import pygame
 
 # Parameters
 Window = pygame.Rect(0, 0, 1000, 600)
-world_size = '100x60'
+world_size = '30x20'
 world_size = [int(f) for f in world_size.split('x')]  # <- return list object
 line_width = 1
 fps = 60
