@@ -10,10 +10,12 @@ import pygame
 
 # Parameters
 Window = pygame.Rect(0, 0, 1000, 600)
-world_size = '200x200'
+world_size = '100x102'
 world_size = [int(f) for f in world_size.split('x')]  # <- return list object
+line_width = 1
 fps = 60
 game_status = True  # when this status is True, cells is updated
+
 
 # Colors
 White = (255, 255, 255)
@@ -23,17 +25,20 @@ Blue = (0, 0, 255)
 Black = (0, 0, 0)
 
 # Objects
+
+
 class Cell(pygame.sprite.Sprite):
     def __init__(self) -> None:
         super().__init__()
         self.screen = pygame.display.get_surface()
         self.rect = pygame.Rect(
-        #         v ここエラー出るかも               v ここエラー出るかも
+            #         v ここエラー出るかも               v ここエラー出るかも
             0, 0, int(Window.width/world_size[0]), int(Window.height/world_size[1]))
-        self.rects = [[pygame.Rect(x*self.rect.width,
-                                   y*self.rect.height,
-                                   int(Window.width/world_size[0]),
-                                   int(Window.height/world_size[1]))
+        self.rects = [[pygame.Rect(x*self.rect.width+line_width,
+                                   y*self.rect.height+line_width,
+                                   int((Window.width - line_width *
+                                       (world_size[0]-1))/world_size[0]),
+                                   int((Window.height - line_width*(world_size[1]-1)) / world_size[1]))
                        for x in range(world_size[0])]
                       for y in range(world_size[1])]
         self.game_of_life = GameOfLife()
@@ -86,13 +91,13 @@ class GameOfLife:
         """世界の状態をカオスに初期化する
         """
         self.world = [[choice(self.true_or_false) for i in range(
-            self.world_size)] for j in range(self.world_size)]
+            self.world_size[0])] for j in range(self.world_size[1])]
 
     def change_world(self):
         """世代交代
         """
-        for i in range(self.world_size[0]):
-            for j in range(self.world_size[1]):
+        for i in range(self.world_size[1]):
+            for j in range(self.world_size[0]):
 
                 self.tmp_world[i][j] = self.life_or_death(j, i)
         self.world = deepcopy(self.tmp_world)
@@ -142,17 +147,28 @@ class GameOfLife:
         if self.world[(y+1) % self.world_size[1]][(x+1) % self.world_size[0]] == True:
             self.count += 1
 
+<<<<<<< HEAD
 # game mode
+=======
+# game modes
+
+
+>>>>>>> create_line
 def pause():
     screen = pygame.display.get_surface()
-    font = pygame.font.SysFont(None,80)
-    Pause_msg = font.render("PAUSE",True,Blue)
-    screen.blit(Pause_msg,(Window.centerx - Pause_msg.get_width()//2,Window.centery - Pause_msg.get_height()//2))
+    font = pygame.font.SysFont(None, 80)
+    Pause_msg = font.render("PAUSE", True, Blue)
+    screen.blit(Pause_msg, (Window.centerx - Pause_msg.get_width() //
+                2, Window.centery - Pause_msg.get_height()//2))
+
 
 # main stream
 pygame.init()
-pygame.display.set_mode(Window.size)
+screen = pygame.display.set_mode(Window.size)
 pygame.display.set_caption('The game of life')
+
+#
+bg = Black
 
 #
 cell = Cell()
@@ -167,6 +183,9 @@ while True:
     clock.tick(fps)
 
     #
+    screen.fill(bg)
+
+    #
     for event in pygame.event.get():
         if event.type == QUIT:
             sys.exit()
@@ -174,11 +193,13 @@ while True:
             sys.exit()
         if event.type == KEYDOWN and event.key == K_SPACE:
             game_status = not game_status
-            pause()
+
 
     #
     if game_status:
         cell.update()
+    else:
+        pause()
 
     #
     pygame.display.flip()
