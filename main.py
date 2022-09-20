@@ -3,14 +3,13 @@
 
 from copy import deepcopy
 from random import choice
-from time import sleep
 import sys
 from pygame.locals import *
 import pygame
 
 # Parameters
 Window = pygame.Rect(0, 0, 1000, 600)
-world_size = '100x102'
+world_size = '10x10'
 world_size = [int(f) for f in world_size.split('x')]  # <- return list object
 line_width = 1
 fps = 60
@@ -32,12 +31,10 @@ class Cell(pygame.sprite.Sprite):
         super().__init__()
         self.screen = pygame.display.get_surface()
         self.rect = pygame.Rect(
-            #         v ここエラー出るかも               v ここエラー出るかも
             0, 0, int(Window.width/world_size[0]), int(Window.height/world_size[1]))
-        self.rects = [[pygame.Rect(x*self.rect.width+line_width,
-                                   y*self.rect.height+line_width,
-                                   int((Window.width - line_width *
-                                       (world_size[0]-1))/world_size[0]),
+        self.rects = [[pygame.Rect(x*(self.rect.width+line_width),
+                                   y*(self.rect.height+line_width),
+                                   int((Window.width - line_width *(world_size[0]-1))/world_size[0]),
                                    int((Window.height - line_width*(world_size[1]-1)) / world_size[1]))
                        for x in range(world_size[0])]
                       for y in range(world_size[1])]
@@ -48,8 +45,11 @@ class Cell(pygame.sprite.Sprite):
         self.game_of_life.main_algorithm()
         for y in range(world_size[1]):
             for x in range(world_size[0]):
+                #if self.game_of_life.world[y][x] == True and self.game_of_life.previous_world[y][x] == False:
                 if self.game_of_life.world[y][x] == True:
                     pygame.draw.rect(self.screen, Black, self.rects[y][x])
+
+                #elif self.game_of_life.world[y][x] == False and self.game_of_life.previous_world[y][x] == True:
                 else:
                     pygame.draw.rect(self.screen, White, self.rects[y][x])
 
@@ -148,9 +148,16 @@ class GameOfLife:
             self.count += 1
 
 # game mode
+def start():
+    screen = pygame.display.get_surface()
+    font = pygame.font.SysFont(None, 100)
+    Start_msg = font.render("START", True, Red)
+    screen.blit(Start_msg, (Window.centerx - Start_msg.get_width() //
+                2, Window.centery - Start_msg.get_height()//2))
+
 def pause():
     screen = pygame.display.get_surface()
-    font = pygame.font.SysFont(None, 80)
+    font = pygame.font.SysFont(None, 100)
     Pause_msg = font.render("PAUSE", True, Blue)
     screen.blit(Pause_msg, (Window.centerx - Pause_msg.get_width() //
                 2, Window.centery - Pause_msg.get_height()//2))
@@ -165,8 +172,16 @@ pygame.display.set_caption('The game of life')
 bg = Black
 
 #
+running = True
+while running:
+    start()
+    for event in pygame.event.get():
+        if event.type == KEYDOWN and event.key == K_SPACE:
+            running = False
+    pygame.display.flip()
+#
+screen.fill(bg)
 cell = Cell()
-
 
 #
 clock = pygame.time.Clock()
@@ -175,6 +190,7 @@ clock = pygame.time.Clock()
 while True:
     #
     clock.tick(fps)
+    pygame.time.wait(100)
 
     #
     screen.fill(bg)
@@ -196,4 +212,4 @@ while True:
         pause()
 
     #
-    pygame.display.flip()
+    pygame.display.update()
