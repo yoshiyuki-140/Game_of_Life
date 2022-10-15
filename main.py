@@ -60,8 +60,9 @@ class GameOfLife:
         self.true_or_false = [True, False]
 
         #世界の状態をすべて死で初期化
-        self.world = [[False for x in range(
-            self.world_size[0])] for y in range(self.world_size[1])]
+        # ここでself.worldクラス変数が定義される
+        self.world_init_death()
+
 
         self.tmp_world = deepcopy(self.world)
         self.previous_world = deepcopy(self.world)
@@ -85,6 +86,12 @@ class GameOfLife:
         self.world[3][1] = False
         self.world[3][2] = True
         self.world[3][3] = False
+
+    def world_init_death(self):
+        """world init command
+        """
+        self.world = [[False for x in range(
+            self.world_size[0])] for y in range(self.world_size[1])]
 
     def randmize_world(self):
         """世界の状態をカオスに初期化する
@@ -233,6 +240,9 @@ while True:
         if event.type == KEYDOWN and event.key == K_g and not game_status:
             cell.game_of_life.glider_init()
         
+        # AddClearAllKey
+        if event.type == KEYDOWN and event.key == K_c and not game_status:
+            cell.game_of_life.world_init_death()
 
         
 
