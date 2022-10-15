@@ -11,4 +11,3 @@ class CommandUtil:
 
     def startCommandMode(self):
         pass
-    
