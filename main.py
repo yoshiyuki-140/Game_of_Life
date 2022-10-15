@@ -10,7 +10,7 @@ import pygame
 
 # Parameters
 Window = pygame.Rect(0, 0, 1000, 600)
-world_size = '30x30'
+world_size = '50x30'
 world_size = [int(f) for f in world_size.split('x')]  # <- return list object
 line_width = 1
 fps = 60
@@ -226,10 +226,14 @@ while True:
                     if cell.rects[y][x].contains(mouse_rect):
                         cell.game_of_life.toggle_object(x+1, y+1)
         # AddRandmizeKey
-        if event.type == KEYDOWN and event.key == K_k and not game_status:
-            for y in range(world_size[1]):
-                for x in range(world_size[0]):
-                    cell.game_of_life.randmize_world()
+        if event.type == KEYDOWN and event.key == K_r and not game_status:
+            cell.game_of_life.randmize_world()
+        
+        # AddGriderGenerateKey
+        if event.type == KEYDOWN and event.key == K_g and not game_status:
+            cell.game_of_life.glider_init()
+        
+
         
 
     #
