@@ -63,7 +63,6 @@ class GameOfLife:
         # ここでself.worldクラス変数が定義される
         self.world_init_death()
 
-
         self.tmp_world = deepcopy(self.world)
         self.previous_world = deepcopy(self.world)
 
@@ -235,16 +234,14 @@ while True:
         # AddRandmizeKey
         if event.type == KEYDOWN and event.key == K_r and not game_status:
             cell.game_of_life.randmize_world()
-        
+
         # AddGriderGenerateKey
         if event.type == KEYDOWN and event.key == K_g and not game_status:
             cell.game_of_life.glider_init()
-        
+
         # AddClearAllKey
         if event.type == KEYDOWN and event.key == K_c and not game_status:
             cell.game_of_life.world_init_death()
-
-        
 
     #
     if game_status:
