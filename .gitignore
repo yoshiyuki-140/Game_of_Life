@@ -1,3 +1,4 @@
 ./Pipfile/
 ./build/
 ./dist/
+./src/__pycache__/
