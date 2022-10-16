@@ -3,9 +3,13 @@
 - OperationGuide
 
 START       : Space
+
 END         : ESC
+
 clear all   : c
+
 randomInit  : r
+
 grider      : g
 
 - Release note
