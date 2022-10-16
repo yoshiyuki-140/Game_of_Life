@@ -32,6 +32,7 @@ class Cell(pygame.sprite.Sprite):
                     pygame.draw.rect(self.screen, White, self.rects[y][x])
 
 
+# Game rules
 class GameOfLife:
     def __init__(self, world_size: tuple):
         #世界の大きさdefoultで10
@@ -72,7 +73,7 @@ class GameOfLife:
         self.world = [[False for x in range(
             self.world_size[0])] for y in range(self.world_size[1])]
 
-    def randmize_world(self):
+    def randomize_world(self):
         """世界の状態をカオスに初期化する
         """
         self.world = [[choice(self.true_or_false) for i in range(

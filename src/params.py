@@ -8,7 +8,7 @@ world_size = '50x30'
 world_size = [int(f) for f in world_size.split('x')]  # <- return list object
 line_width = 1
 fps = 60
-game_status = True  # when this status is True, cells is updated
+game_status = True  # when this status is True, any ells will be updated
 
 
 # Colors
