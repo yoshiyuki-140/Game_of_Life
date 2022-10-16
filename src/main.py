@@ -8,6 +8,9 @@ import sys
 from pygame.locals import *
 import pygame
 
+# my modules
+import commandmode
+
 # Parameters
 Window = pygame.Rect(0, 0, 1000, 600)
 world_size = '50x30'
@@ -62,7 +65,6 @@ class GameOfLife:
         #世界の状態をすべて死で初期化
         # ここでself.worldクラス変数が定義される
         self.world_init_death()
-
 
         self.tmp_world = deepcopy(self.world)
         self.previous_world = deepcopy(self.world)
@@ -235,16 +237,19 @@ while True:
         # AddRandmizeKey
         if event.type == KEYDOWN and event.key == K_r and not game_status:
             cell.game_of_life.randmize_world()
-        
+
         # AddGriderGenerateKey
         if event.type == KEYDOWN and event.key == K_g and not game_status:
             cell.game_of_life.glider_init()
-        
+
         # AddClearAllKey
         if event.type == KEYDOWN and event.key == K_c and not game_status:
             cell.game_of_life.world_init_death()
 
-        
+        # AddCommandKey
+        if event.type == KEYDOWN and event.key == K_COLON and not game_status:
+            commandInstance = commandmode.CommandUtil()
+            commandInstance.startCommandMode()
 
     #
     if game_status:
