@@ -17,20 +17,9 @@ pygame.init()
 screen = pygame.display.set_mode(Window.size)
 pygame.display.set_caption('The game of life')
 
-#
-running = True
-while running:
-    start()
-    for event in pygame.event.get():
-        if event.type == KEYDOWN and event.key == K_SPACE:
-            running = False
-        if event.type == QUIT:
-            sys.exit()
-        if event.type == KEYDOWN and event.key == K_ESCAPE:
-            sys.exit()
+# by gameModeHandler
+showStartScreen()
 
-    pygame.display.flip()
-#
 screen.fill(Black)
 cell = Cell()
 
@@ -66,7 +55,7 @@ while True:
                         cell.game_of_life.toggle_object(x+1, y+1)
         # AddRandmizeKey
         if event.type == KEYDOWN and event.key == K_r and not game_status:
-            cell.game_of_life.randmize_world()
+            cell.game_of_life.randomize_world()
 
         # AddGriderGenerateKey
         if event.type == KEYDOWN and event.key == K_g and not game_status:
