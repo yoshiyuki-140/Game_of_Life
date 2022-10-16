@@ -8,6 +8,9 @@ import sys
 from pygame.locals import *
 import pygame
 
+# my modules
+import commandmode
+
 # Parameters
 Window = pygame.Rect(0, 0, 1000, 600)
 world_size = '50x30'
@@ -242,6 +245,11 @@ while True:
         # AddClearAllKey
         if event.type == KEYDOWN and event.key == K_c and not game_status:
             cell.game_of_life.world_init_death()
+
+        # AddCommandKey
+        if event.type == KEYDOWN and event.key == K_COLON and not game_status:
+            commandInstance = commandmode.CommandUtil()
+            commandInstance.startCommandMode()
 
     #
     if game_status:
