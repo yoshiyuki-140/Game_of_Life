@@ -7,6 +7,8 @@ from random import choice
 from params import *
 
 
+# cell の オブジェクト update メソッドで screenにblitする。
+# 画面に対する描写自体は、main streamで行う(pygame.display.update()メソッドを使用)。
 class Cell(pygame.sprite.Sprite):
     def __init__(self) -> None:
         super().__init__()
@@ -33,6 +35,9 @@ class Cell(pygame.sprite.Sprite):
 
 
 class GameOfLife:
+    """
+    このライフゲームの要となる法則を定義している。
+    """
     def __init__(self, world_size: tuple):
         #世界の大きさdefoultで10
         self.world_size = world_size
