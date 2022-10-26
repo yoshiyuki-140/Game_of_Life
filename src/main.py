@@ -7,10 +7,10 @@ import sys
 from pygame.locals import *
 
 # my modules
-import commandmode
 from params import *
 from objects import *
 from gameModeHandler import *
+from commandmode import CommandUtil
 
 # main stream
 pygame.init()
@@ -67,8 +67,8 @@ while True:
 
         # AddCommandKey
         if event.type == KEYDOWN and event.key == K_COLON and not game_status:
-            commandInstance = commandmode.CommandUtil()
-            commandInstance.startCommandMode()
+            cmdIns = CommandUtil
+            cmdStr = cmdIns.returnStrForCommand(commands)
 
     #
     if game_status:
