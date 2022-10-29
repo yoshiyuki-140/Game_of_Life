@@ -65,7 +65,7 @@ while True:
 
             if event.Text == 'start':
                 game_status = True
-            if event.Text == 'pause':
+            if event.Text == 'pause' or event.Text == 'stop':
                 game_status = False
             if event.Text == 'quit':
                 pygame.quit()
