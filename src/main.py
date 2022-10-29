@@ -48,8 +48,8 @@ while True:
 
         if event.type == KEYDOWN and event.key == K_ESCAPE:
             sys.exit()
-        if event.type == KEYDOWN and event.key == K_SPACE:
-            game_status = not game_status
+        # if event.type == KEYDOWN and event.key == K_SPACE:
+        #     game_status = not game_status
 
         #
         if event.type == MOUSEBUTTONDOWN and event.button == 1:
@@ -61,7 +61,12 @@ while True:
                     if cell.rects[y][x].contains(mouse_rect):
                         cell.game_of_life.toggle_object(x+1, y+1)
         # 各種コマンドの処理
-        if event.type == pygame.USEREVENT and not game_status:
+        if event.type == pygame.USEREVENT:
+
+            if event.Text == 'start':
+                game_status = True
+            if event.Text == 'pause':
+                game_status = False
             if event.Text == 'quit':
                 pygame.quit()
                 sys.exit()
