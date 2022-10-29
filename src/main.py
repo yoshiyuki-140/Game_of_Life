@@ -33,7 +33,7 @@ text_box = TextInput(pygame.font.SysFont("yumincho", 30), Green)
 #
 while True:
     #
-    # clock.tick(fps)
+    clock.tick(fps)
     # pygame.time.wait(100)
     events = pygame.event.get()
 
@@ -67,7 +67,7 @@ while True:
                 game_status = True
             if event.Text == 'pause' or event.Text == 'stop':
                 game_status = False
-            if event.Text == 'quit':
+            if event.Text == 'quit' or event.Text == 'exit':
                 pygame.quit()
                 sys.exit()
             if event.Text == 'grider':
