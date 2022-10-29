@@ -29,8 +29,7 @@ cell = Cell()
 clock = pygame.time.Clock()
 
 # text box for the commands of LifeGame
-text_box = TextInput(pygame.font.SysFont("yumincho", 30), Green)
-#
+text_box = TextInput(pygame.font.SysFont("msmincho", 30), Red)
 while True:
     #
     clock.tick(fps)

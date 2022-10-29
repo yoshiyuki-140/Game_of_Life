@@ -57,6 +57,8 @@ class GameOfLife:
     def main_algorithm(self):
         self.previous_world = deepcopy(self.world)
         self.change_world()
+    # 入れるならここに入れる
+    # if you enter to life game objects, you should input to here
 
     def glider_init(self):
         """conway's game of life における グライダーを作成する
