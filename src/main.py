@@ -10,7 +10,9 @@ from pygame.locals import *
 from params import *
 from objects import *
 from gameModeHandler import *
-from commandmode import CommandUtil
+
+# text handling module
+from pygame_textinput.textinput import TextInput
 
 # main stream
 pygame.init()
@@ -26,19 +28,24 @@ cell = Cell()
 #
 clock = pygame.time.Clock()
 
+# text box for the commands of LifeGame
+text_box = TextInput(pygame.font.SysFont("yumincho", 30), Green)
 #
 while True:
     #
-    clock.tick(fps)
-    pygame.time.wait(100)
+    # clock.tick(fps)
+    # pygame.time.wait(100)
+    events = pygame.event.get()
 
     #
     screen.fill(Black)
 
     #
-    for event in pygame.event.get():
+    for event in events:
         if event.type == QUIT:
+            pygame.quit()
             sys.exit()
+
         if event.type == KEYDOWN and event.key == K_ESCAPE:
             sys.exit()
         if event.type == KEYDOWN and event.key == K_SPACE:
@@ -53,22 +60,18 @@ while True:
                     #
                     if cell.rects[y][x].contains(mouse_rect):
                         cell.game_of_life.toggle_object(x+1, y+1)
-        # AddRandmizeKey
-        if event.type == KEYDOWN and event.key == K_r and not game_status:
-            cell.game_of_life.randomize_world()
+        # 各種コマンドの処理
+        if event.type == pygame.USEREVENT and not game_status:
+            if event.Text == 'quit':
+                pygame.quit()
+                sys.exit()
+            if event.Text == 'grider':
+                cell.game_of_life.glider_init()
+            if event.Text == 'clear':
+                cell.game_of_life.world_init_death()
+            if event.Text == 'random':
+                cell.game_of_life.randomize_world()
 
-        # AddGriderGenerateKey
-        if event.type == KEYDOWN and event.key == K_g and not game_status:
-            cell.game_of_life.glider_init()
-
-        # AddClearAllKey
-        if event.type == KEYDOWN and event.key == K_c and not game_status:
-            cell.game_of_life.world_init_death()
-
-        # AddCommandKey
-        if event.type == KEYDOWN and event.key == K_COLON and not game_status:
-            cmdIns = CommandUtil
-            cmdStr = cmdIns.returnStrForCommand(commands)
 
     #
     if game_status:
@@ -79,4 +82,6 @@ while True:
         pause()
 
     #
+    text_box.update(events)
+    screen.blit(text_box.get_surface(), (10, 550))
     pygame.display.update()

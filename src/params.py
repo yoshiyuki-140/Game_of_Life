@@ -17,6 +17,3 @@ Red = (255, 0, 0)
 Green = (0, 255, 0)
 Blue = (0, 0, 255)
 Black = (0, 0, 0)
-
-# command list
-commands = ['grider','quit','q']
