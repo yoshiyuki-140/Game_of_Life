@@ -59,6 +59,9 @@ class GameOfLife:
         self.change_world()
     # 入れるならここに入れる
     # if you enter to life game objects, you should input to here
+    def create_bar(self):
+        for i in range(10):
+            self.world[15][i+20] = True
 
     def glider_init(self):
         """conway's game of life における グライダーを作成する

@@ -33,7 +33,7 @@ text_box = TextInput(pygame.font.SysFont("msmincho", 30), Red)
 while True:
     #
     clock.tick(fps)
-    # pygame.time.wait(100)
+    pygame.time.wait(100)
     events = pygame.event.get()
 
     #
@@ -75,6 +75,8 @@ while True:
                 cell.game_of_life.world_init_death()
             if event.Text == 'random':
                 cell.game_of_life.randomize_world()
+            if event.Text == 'bar':
+                cell.game_of_life.create_bar()
 
 
     #
