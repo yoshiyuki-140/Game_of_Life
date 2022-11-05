@@ -115,11 +115,11 @@ class GameOfLife:
         if self.world[y][x]:
             if self.count == 2 or self.count == 3:
                 return True
-            else:
-                return False
+            return False
         else:
             if self.count == 3:
                 return True
+            return False
 
     def neighbor_count(self, x, y):
         """周辺の状態をカウントする
