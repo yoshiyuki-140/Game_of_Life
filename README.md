@@ -1,18 +1,17 @@
 # game_of_life
 
-- OperationGuide
+- OperationGuide : command mode
 
-START       : Space
+START           : Space,'start'
 
-END         : ESC
+STOP            : 'pause','stop'
 
-clear all   : c
+END             : 'exit','quit'
 
-randomInit  : r
+clear           : 'clear'
 
-grider      : g
+randomInit      : 'random'
 
-- Release note
+create grider   : 'grider'
 
-I add some shot cut key, and incleased readability
-
+- Others : operation of 

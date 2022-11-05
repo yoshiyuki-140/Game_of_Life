@@ -14,7 +14,7 @@ Types if import:
 IMPORTANT: Do NOT post this list to the issue-tracker. Use it as a basis for
             tracking down the missing module yourself. Thanks!
 
-missing module named pyimod02_importers - imported by C:\Users\moyas\.virtualenvs\game_of_life-y9FRC9J5\Lib\site-packages\PyInstaller\hooks\rthooks\pyi_rth_pkgres.py (top-level), C:\Users\moyas\.virtualenvs\game_of_life-y9FRC9J5\Lib\site-packages\PyInstaller\hooks\rthooks\pyi_rth_pkgutil.py (top-level)
+missing module named pyimod02_importers - imported by C:\Users\moyas\.virtualenvs\moyas-D6if5V1e\Lib\site-packages\PyInstaller\hooks\rthooks\pyi_rth_pkgres.py (top-level), C:\Users\moyas\.virtualenvs\moyas-D6if5V1e\Lib\site-packages\PyInstaller\hooks\rthooks\pyi_rth_pkgutil.py (top-level)
 missing module named pep517 - imported by importlib.metadata (delayed)
 missing module named 'org.python' - imported by copy (optional), xml.sax (delayed, conditional)
 missing module named org - imported by pickle (optional)
@@ -49,7 +49,6 @@ missing module named 'java.lang' - imported by platform (delayed, optional), xml
 missing module named vms_lib - imported by platform (delayed, optional)
 missing module named java - imported by platform (delayed)
 missing module named _scproxy - imported by urllib.request (conditional)
-missing module named pygame_textinput - imported by C:\Users\moyas\Documents\program_dir\python_codes\game\game_of_life\src\main.py (top-level)
 missing module named pygame.sdlmain_osx - imported by pygame (top-level), pygame.macosx (top-level)
 missing module named OpenGL - imported by pygame (delayed)
 missing module named numpy - imported by pygame.surfarray (top-level), pygame.sndarray (top-level), pygame (delayed)
