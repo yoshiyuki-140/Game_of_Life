@@ -1,16 +1,43 @@
-# game_of_life
+game_of_life
+===
 
-- Credit
+内容
+---
 
-pygameを開発した人たちに当然感謝しています.ありがとうございました.
-また,ソースコード内で使われている'pygame_textinput'モジュールは'Eisuke Okazaki'様の作品です.
-LICENCEのタグがなかったので,怖かったですが,ドキュメントがわかりやすく書かれていたため,
-使用してしまいました.ごめんなさい.
-しかし,もしこれがなかったら,新しくtextbox用のモジュールを用意しなければいけなかった.
-お望みならば,このコードは削除いたします.
+pythonのpygameというモジュールでConway's LifeGameを作成しました.
+工大際で出品するのがノルマだと思っていたので、作ってしまった.
 
+使用したモジュールなど
+---
 
-- command mode util : the text box display left bottom.
+| モジュール名 | バージョン | 作者 | 
+| :---------------- | :---- | :----------------     |   
+| pygame            | 1.9.6 | -                     |
+| pygame_textinput  | -     | 'Eisuke Okazaki'様    |
+
+インストール & 実行
+---
+
+- Linux : Ubuntu 20.04.5 LTS (my environment)
+
+~~~sh
+$ # Install
+$ sudo apt update && sudo apt upgrade -y
+$ sudo apt install git python3 python3-pygame
+$ git clone https://github.com/yoshiyuki-140/game_of_life.git
+$ # 実行
+$ cd src
+$ python3 main.py
+$ # なんかほかにインストールするべきだったような...
+~~~
+
+- Windows : windows 11
+
+https://github.com/yoshiyuki-140/game_of_life/releases
+からインストールできます,dist以下のmain.exeをダブルクリックすると実行可能です
+
+コマンド
+---
 
 START           : Space,'start'
 
@@ -24,6 +51,8 @@ randomInit      : 'random'
 
 create grider   : 'grider'
 
-- GUI util
+GUI動作
+---
 
-You can toggle cell's status to click the cell
+各セルをクリックするとセルの状態を変更できます。
+'pause'コマンドを使用してからでないと、見えないかも
