@@ -23,7 +23,7 @@ class Cell(pygame.sprite.Sprite):
                        for x in range(world_size[0])]
                       for y in range(world_size[1])]
         self.game_of_life = GameOfLife(world_size=world_size)
-        self.game_of_life.glider_init()
+        self.game_of_life.createGlier()
 
     def update(self):
         for y in range(world_size[1]):
@@ -48,7 +48,7 @@ class GameOfLife:
 
         #世界の状態をすべて死で初期化
         # ここでself.worldクラス変数が定義される
-        self.world_init_death()
+        self.resetWorld()
 
         self.tmp_world = deepcopy(self.world)
         self.previous_world = deepcopy(self.world)
@@ -61,11 +61,11 @@ class GameOfLife:
     # 入れるならここに入れる
     # if you enter to life game objects, you should input to here
 
-    def create_bar(self):
+    def createBar(self):
         for i in range(10):
             self.world[15][i+20] = True
 
-    def glider_init(self):
+    def createGlier(self):
         """
         conway's game of life における グライダーを作成する
         """
@@ -80,13 +80,13 @@ class GameOfLife:
         self.world[3][2] = True
         self.world[3][3] = False
 
-    def world_init_death(self):
+    def resetWorld(self):
         """world init command
         """
         self.world = [[False for x in range(
             self.world_size[0])] for y in range(self.world_size[1])]
 
-    def randomize_world(self):
+    def setRandom(self):
         """
         世界の状態をカオスに初期化する
         """
@@ -147,10 +147,6 @@ class GameOfLife:
                     continue
                 self.world[y+yi][x+xi] = False
                     
-
-                
-
-
     def neighbor_count(self, x, y):
         """周辺の状態をカウントする
         """

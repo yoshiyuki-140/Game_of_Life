@@ -29,7 +29,7 @@ cell = Cell()
 clock = pygame.time.Clock()
 
 # text box for the commands of LifeGame
-text_box = TextInput(pygame.font.SysFont("msmincho", 30), Red)
+text_box = TextInput(pygame.font.SysFont("msmincho", 40), Black)
 while True:
     #
     clock.tick(fps)
@@ -61,31 +61,30 @@ while True:
                         cell.game_of_life.toggle_object(x+1, y+1)
         # 各種コマンドの処理
         if event.type == pygame.USEREVENT:
-            cmd = event.Text
-            if cmd == 'start':
-                game_status = True
-            if cmd == 'pause' or cmd == 'stop':
-                game_status = False
-            if cmd == 'quit' or cmd == 'exit':
-                pygame.quit()
-                sys.exit()
-            if cmd == 'glider':
-                cell.game_of_life.glider_init()
-            if cmd == 'spaceShip':
-                cell.game_of_life.createSpaceShip()
-            if cmd == 'clear':
-                cell.game_of_life.world_init_death()
-            if cmd == 'random':
-                cell.game_of_life.randomize_world()
-            if cmd == 'bar':
-                cell.game_of_life.create_bar()
-            # arg cmds
-            if len(cmd.split(" ")) > 1:
-                args = [word.strip('\n') for word in cmd.split(" ")]
-                if len(args) >= 3 and args[0] == 'spaceShip':
-                    cell.game_of_life.createSpaceShip(int(args[1]),int(args[2]))
-
-
+            cmds = event.Text.rstrip('\n').split(" ")
+            if len(cmds) == 1:
+                if cmds[0] == 'start':
+                    game_status = True
+                if cmds[0] == 'pause' or cmds[0] == 'stop':
+                    game_status = False
+                if cmds[0] == 'quit' or cmds[0] == 'exit':
+                    pygame.quit()
+                    sys.exit()
+                if cmds[0] == 'glider':
+                    cell.game_of_life.createGlier()
+                if cmds[0] == 'spaceShip':
+                    cell.game_of_life.createSpaceShip()
+                if cmds[0] == 'bar':
+                    cell.game_of_life.createBar()
+                if cmds[0] == 'random':
+                    cell.game_of_life.setRandom()
+                if cmds[0] == 'clear':
+                    cell.game_of_life.resetWorld()
+            # arg cmds[0]s
+            if len(cmds) > 1:
+                if len(cmds) >= 3 and cmds[0] == 'spaceShip':
+                    cell.game_of_life.createSpaceShip(
+                        int(cmds[1]), int(cmds[2]))
 
     #
     if game_status:
@@ -95,7 +94,12 @@ while True:
         cell.update()
         pause()
 
-    #
+    # ここの書き方下手だよね
+    # textboxの背景をつけるのとそのblit
     text_box.update(events)
-    screen.blit(text_box.get_surface(), (10, 550))
+    rectOfTextBox =  text_box.get_surface().get_rect()
+    rectOfTextBox.topleft = 10,550
+    screen.fill(Green,rectOfTextBox)
+    screen.blit(text_box.get_surface(),rectOfTextBox.topleft)
+
     pygame.display.update()

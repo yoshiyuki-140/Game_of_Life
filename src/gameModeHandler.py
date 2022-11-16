@@ -28,7 +28,6 @@ def showStartScreen():
         pygame.display.flip()
     #
 
-
 def pause():
     screen = pygame.display.get_surface()
     font = pygame.font.SysFont(None, 100)
