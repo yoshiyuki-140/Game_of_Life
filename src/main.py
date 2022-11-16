@@ -61,22 +61,30 @@ while True:
                         cell.game_of_life.toggle_object(x+1, y+1)
         # 各種コマンドの処理
         if event.type == pygame.USEREVENT:
-
-            if event.Text == 'start':
+            cmd = event.Text
+            if cmd == 'start':
                 game_status = True
-            if event.Text == 'pause' or event.Text == 'stop':
+            if cmd == 'pause' or cmd == 'stop':
                 game_status = False
-            if event.Text == 'quit' or event.Text == 'exit':
+            if cmd == 'quit' or cmd == 'exit':
                 pygame.quit()
                 sys.exit()
-            if event.Text == 'grider':
+            if cmd == 'glider':
                 cell.game_of_life.glider_init()
-            if event.Text == 'clear':
+            if cmd == 'spaceShip':
+                cell.game_of_life.createSpaceShip()
+            if cmd == 'clear':
                 cell.game_of_life.world_init_death()
-            if event.Text == 'random':
+            if cmd == 'random':
                 cell.game_of_life.randomize_world()
-            if event.Text == 'bar':
+            if cmd == 'bar':
                 cell.game_of_life.create_bar()
+            # arg cmds
+            if len(cmd.split(" ")) > 1:
+                args = [word.strip('\n') for word in cmd.split(" ")]
+                if len(args) >= 3 and args[0] == 'spaceShip':
+                    cell.game_of_life.createSpaceShip(int(args[1]),int(args[2]))
+
 
 
     #

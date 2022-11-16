@@ -39,6 +39,7 @@ class GameOfLife:
     """
     このライフゲームの要となる法則を定義している。
     """
+
     def __init__(self, world_size: tuple):
         #世界の大きさdefoultで10
         self.world_size = world_size
@@ -59,12 +60,14 @@ class GameOfLife:
         self.change_world()
     # 入れるならここに入れる
     # if you enter to life game objects, you should input to here
+
     def create_bar(self):
         for i in range(10):
             self.world[15][i+20] = True
 
     def glider_init(self):
-        """conway's game of life における グライダーを作成する
+        """
+        conway's game of life における グライダーを作成する
         """
 
         self.world[1][1] = True
@@ -84,13 +87,15 @@ class GameOfLife:
             self.world_size[0])] for y in range(self.world_size[1])]
 
     def randomize_world(self):
-        """世界の状態をカオスに初期化する
+        """
+        世界の状態をカオスに初期化する
         """
         self.world = [[choice(self.true_or_false) for i in range(
             self.world_size[0])] for j in range(self.world_size[1])]
 
     def change_world(self):
-        """世代交代
+        """
+        世代交代
         """
         for i in range(self.world_size[1]):
             for j in range(self.world_size[0]):
@@ -120,6 +125,31 @@ class GameOfLife:
             if self.count == 3:
                 return True
             return False
+    def createSpaceShip(self,x=0,y=0):
+        # 1行目
+        for yi in range(4):
+            for xi in range(6):
+                # at 1 row
+                if yi==0 and xi == 4:
+                    self.world[y+yi][x+xi] = True
+                    continue
+                # at 2 row
+                if yi == 1 and xi == 5:
+                    self.world[y+yi][x+xi] = True
+                    continue
+                # at 3 row
+                if yi == 2 and (xi == 5 or xi == 0):
+                    self.world[y+yi][x+xi] = True
+                    continue
+                # at 4 row
+                if yi == 3 and (xi != 0):
+                    self.world[y+yi][x+xi] = True
+                    continue
+                self.world[y+yi][x+xi] = False
+                    
+
+                
+
 
     def neighbor_count(self, x, y):
         """周辺の状態をカウントする
@@ -141,4 +171,3 @@ class GameOfLife:
             self.count += 1
         if self.world[(y+1) % self.world_size[1]][(x+1) % self.world_size[0]] == True:
             self.count += 1
-
