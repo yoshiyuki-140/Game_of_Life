@@ -13,15 +13,15 @@ class Cell(pygame.sprite.Sprite):
     def __init__(self) -> None:
         super().__init__()
         self.screen = pygame.display.get_surface()
-        self.rect = pygame.Rect(
-            0, 0, int(Window.width/world_size[0]), int(Window.height/world_size[1]))
+        self.rect = pygame.Rect(0,0,int(Window.width/world_size[0]), 
+                                int(Window.height/world_size[1]))
         self.rects = [[pygame.Rect(x*(self.rect.width+line_width),
-                                   y*(self.rect.height+line_width),
-                                   int((Window.width - line_width *
-                                       (world_size[0]-1))/world_size[0]),
-                                   int((Window.height - line_width*(world_size[1]-1)) / world_size[1]))
-                       for x in range(world_size[0])]
-                      for y in range(world_size[1])]
+                        y*(self.rect.height+line_width),
+                        int((Window.width - line_width * (world_size[0]-1))/world_size[0]),
+                        int((Window.height - line_width*(world_size[1]-1)) / world_size[1]))
+                        for x in range(world_size[0])]
+                        for y in range(world_size[1])]
+
         self.game_of_life = GameOfLife(world_size=world_size)
         self.game_of_life.createGlier()
 
@@ -46,8 +46,6 @@ class GameOfLife:
 
         self.true_or_false = [True, False]
 
-        #世界の状態をすべて死で初期化
-        # ここでself.worldクラス変数が定義される
         self.resetWorld()
 
         self.tmp_world = deepcopy(self.world)
@@ -58,8 +56,6 @@ class GameOfLife:
     def main_algorithm(self):
         self.previous_world = deepcopy(self.world)
         self.change_world()
-    # 入れるならここに入れる
-    # if you enter to life game objects, you should input to here
 
     def createBar(self):
         for i in range(10):
