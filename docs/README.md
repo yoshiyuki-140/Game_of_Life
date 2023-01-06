@@ -1,61 +1,47 @@
 game_of_life
 ===
 
-内容
+CONTENTS
 ---
 
-pythonのpygameというモジュールでConway's LifeGameを作成しました.
-工大際で出品するのがノルマだと思っていたので、作ってしまった.
+    I made "Conway's LifeGame" by "pygame_textinput" and "pygame" which is python's module.
 
-使用したモジュールなど
+Modules
 ---
 
-| モジュール名 | バージョン | 作者 | 
+| Module | ver | Author | 
 | :---------------- | :---- | :------------------------ |   
 | pygame            | 1.9.6 | -                         |
-| [pygame_textinput][1]  | -     | ['Eisuke Okazaki'様][2]   |
+| [pygame_textinput][1]  | -     | [Mr.'Eisuke Okazaki'][2]   |
 
-インストール & 実行
+Install
 ---
 
-- Linux : Ubuntu 20.04.5 LTS (my environment)
+- Windows : windows 11  
+    [Windows 11][3]  
+    It might raise windows or browser seculity error.
 
-```sh
-# Install
-sudo apt update && sudo apt upgrade -y
-sudo apt install git python3 python3-pygame
-cd
-git clone https://github.com/yoshiyuki-140/game_of_life.git
-# 実行
-cd src
-python3 main.py
-# なんかほかにインストールするべきだったような...
-```
+- Other OS  
+    Sorry...
 
-- Windows : windows 11
-
-[私のリリースする場所][3]
-からインストールできます.
-実行時にセキュリティーエラーの警告がされるかもしれません.
-
-動かし方
+Usage
 ---
 
-| コマンド | 動作 |
+| Command | Behavior |
 | :------------ | :------------------------------------------- |
-| 'start' | シュミレーション開始 ,最初はSpaceキーを押さないといけない |
-| 'stop','pause'  | 一時停止,どっちのコマンドでも同じ動作 |
-| 'exit','quit' | シュミレーションの終了 |
-| 'clear'           | すべてのセルの状態を死にする |
-| 'random'| セルの状態をランダムにする | 
-| 'grider' | ライフゲームにおけるグライダーを左上に一つ作成|
+| 'start' | Start lifegame simulation |
+| 'stop','pause'  | show Pause |
+| 'exit','quit' | exit from app |
+| 'clear'           | the all cell is setted white status |
+| 'random'| set random each cell status |
+| 'glider' | create glider |
 
-その他
+Others
 ---
-各セルをクリックするとセルの状態を変更できます。
-'pause'コマンドを使用してからでないと,変更が実感できないかも,というのも周りのセルが死んでいたら
-そのセルはすぐに死ぬから.
+You can change status of cells by click each cells.
 
+Demo Video
+---
 ![demoVideo](https://github.com/yoshiyuki-140/game_of_life/blob/main/docs/demo.gif)  
 
 [1]:https://github.com/DYGV/pygame_textinput
