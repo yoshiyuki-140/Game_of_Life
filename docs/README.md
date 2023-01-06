@@ -4,7 +4,7 @@ game_of_life
 CONTENTS
 ---
 
-    I made "Conway's LifeGame" by "pygame_textinput" and "pygame" which is python's module.
+I made "Conway's LifeGame" by "pygame_textinput" and "pygame" which is python's module.
 
 Modules
 ---
