@@ -40,6 +40,7 @@ Or on the "dist" dir of powershell, You can use "start main.exe" to execute this
 | 'clear'           | the all cell is setted white status |
 | 'random'| set random each cell status |
 | 'glider' | create glider |
+| 'spaceship' | create spaceship |
 
 Others
 ---
@@ -47,7 +48,7 @@ You can change status of cells by click each cells.
 
 Demo Video
 ---
-![demoVideo](https://github.com/yoshiyuki-140/game_of_life/blob/main/docs/demo.gif)  
+![demoVideo](https://github.com/yoshiyuki-140/game_of_life/blob/main/docs/demo.mp4)  
 
 [1]:https://github.com/DYGV/pygame_textinput
 [2]:https://github.com/DYGV
