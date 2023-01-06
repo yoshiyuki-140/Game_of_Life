@@ -3,11 +3,11 @@
 import pygame
 
 # Parameters
-Window = pygame.Rect(0, 0, 1000, 600)
-world_size = '200x120'
-world_size = [int(f) for f in world_size.split('x')]  # <- return list object
-line_width = 1
-fps = 60
+WINDOW = pygame.Rect(0, 0, 1000, 600)
+WORLD_SIZE = '100x60'
+WORLD_SIZE = [int(f) for f in WORLD_SIZE.split('x')]  # <- return list object
+LINE_WIDTH = 1
+FPS = 60
 game_status = True  # when this status is True, any ells will be updated
 
 

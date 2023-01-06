@@ -13,21 +13,21 @@ class Cell(pygame.sprite.Sprite):
     def __init__(self) -> None:
         super().__init__()
         self.screen = pygame.display.get_surface()
-        self.rect = pygame.Rect(0,0,int(Window.width/world_size[0]), 
-                                int(Window.height/world_size[1]))
-        self.rects = [[pygame.Rect(x*(self.rect.width+line_width),
-                        y*(self.rect.height+line_width),
-                        int((Window.width - line_width * (world_size[0]-1))/world_size[0]),
-                        int((Window.height - line_width*(world_size[1]-1)) / world_size[1]))
-                        for x in range(world_size[0])]
-                        for y in range(world_size[1])]
+        self.rect = pygame.Rect(0,0,int(WINDOW.width/WORLD_SIZE[0]), 
+                                int(WINDOW.height/WORLD_SIZE[1]))
+        self.rects = [[pygame.Rect(x*(self.rect.width+LINE_WIDTH),
+                        y*(self.rect.height+LINE_WIDTH),
+                        int((WINDOW.width - LINE_WIDTH * (WORLD_SIZE[0]-1))/WORLD_SIZE[0]),
+                        int((WINDOW.height - LINE_WIDTH*(WORLD_SIZE[1]-1)) / WORLD_SIZE[1]))
+                        for x in range(WORLD_SIZE[0])]
+                        for y in range(WORLD_SIZE[1])]
 
-        self.game_of_life = GameOfLife(world_size=world_size)
+        self.game_of_life = GameOfLife(WORLD_SIZE=WORLD_SIZE)
         self.game_of_life.createGlier()
 
     def update(self):
-        for y in range(world_size[1]):
-            for x in range(world_size[0]):
+        for y in range(WORLD_SIZE[1]):
+            for x in range(WORLD_SIZE[0]):
                 if self.game_of_life.world[y][x] == True:
                     pygame.draw.rect(self.screen, Black, self.rects[y][x])
                 else:
@@ -40,9 +40,9 @@ class GameOfLife:
     このライフゲームの要となる法則を定義している。
     """
 
-    def __init__(self, world_size: tuple):
+    def __init__(self, WORLD_SIZE: tuple):
         #世界の大きさdefoultで10
-        self.world_size = world_size
+        self.WORLD_SIZE = WORLD_SIZE
 
         self.true_or_false = [True, False]
 
@@ -80,21 +80,21 @@ class GameOfLife:
         """world init command
         """
         self.world = [[False for x in range(
-            self.world_size[0])] for y in range(self.world_size[1])]
+            self.WORLD_SIZE[0])] for y in range(self.WORLD_SIZE[1])]
 
     def setRandom(self):
         """
         世界の状態をカオスに初期化する
         """
         self.world = [[choice(self.true_or_false) for i in range(
-            self.world_size[0])] for j in range(self.world_size[1])]
+            self.WORLD_SIZE[0])] for j in range(self.WORLD_SIZE[1])]
 
     def change_world(self):
         """
         世代交代
         """
-        for i in range(self.world_size[1]):
-            for j in range(self.world_size[0]):
+        for i in range(self.WORLD_SIZE[1]):
+            for j in range(self.WORLD_SIZE[0]):
                 self.tmp_world[i][j] = self.life_or_death(j, i)
         self.world = deepcopy(self.tmp_world)
 
@@ -147,19 +147,19 @@ class GameOfLife:
         """周辺の状態をカウントする
         """
         self.count = 0
-        if self.world[(y-1) % self.world_size[1]][(x-1) % self.world_size[0]] == True:
+        if self.world[(y-1) % self.WORLD_SIZE[1]][(x-1) % self.WORLD_SIZE[0]] == True:
             self.count += 1
-        if self.world[(y-1) % self.world_size[1]][(x) % self.world_size[0]] == True:
+        if self.world[(y-1) % self.WORLD_SIZE[1]][(x) % self.WORLD_SIZE[0]] == True:
             self.count += 1
-        if self.world[(y-1) % self.world_size[1]][(x+1) % self.world_size[0]] == True:
+        if self.world[(y-1) % self.WORLD_SIZE[1]][(x+1) % self.WORLD_SIZE[0]] == True:
             self.count += 1
-        if self.world[(y) % self.world_size[1]][(x-1) % self.world_size[0]] == True:
+        if self.world[(y) % self.WORLD_SIZE[1]][(x-1) % self.WORLD_SIZE[0]] == True:
             self.count += 1
-        if self.world[(y) % self.world_size[1]][(x+1) % self.world_size[0]] == True:
+        if self.world[(y) % self.WORLD_SIZE[1]][(x+1) % self.WORLD_SIZE[0]] == True:
             self.count += 1
-        if self.world[(y+1) % self.world_size[1]][(x-1) % self.world_size[0]] == True:
+        if self.world[(y+1) % self.WORLD_SIZE[1]][(x-1) % self.WORLD_SIZE[0]] == True:
             self.count += 1
-        if self.world[(y+1) % self.world_size[1]][(x) % self.world_size[0]] == True:
+        if self.world[(y+1) % self.WORLD_SIZE[1]][(x) % self.WORLD_SIZE[0]] == True:
             self.count += 1
-        if self.world[(y+1) % self.world_size[1]][(x+1) % self.world_size[0]] == True:
+        if self.world[(y+1) % self.WORLD_SIZE[1]][(x+1) % self.WORLD_SIZE[0]] == True:
             self.count += 1

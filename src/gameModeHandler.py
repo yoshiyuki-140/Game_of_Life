@@ -10,8 +10,8 @@ def start():
     screen = pygame.display.get_surface()
     font = pygame.font.SysFont(None, 100)
     Start_msg = font.render("START", True, Red)
-    screen.blit(Start_msg, (Window.centerx - Start_msg.get_width() //
-                2, Window.centery - Start_msg.get_height()//2))
+    screen.blit(Start_msg, (WINDOW.centerx - Start_msg.get_width() //
+                2, WINDOW.centery - Start_msg.get_height()//2))
 
 def showStartScreen():
     running = True
@@ -32,5 +32,5 @@ def pause():
     screen = pygame.display.get_surface()
     font = pygame.font.SysFont(None, 100)
     Pause_msg = font.render("PAUSE", True, Blue)
-    screen.blit(Pause_msg, (Window.centerx - Pause_msg.get_width() //
-                2, Window.centery - Pause_msg.get_height()//2))
+    screen.blit(Pause_msg, (WINDOW.centerx - Pause_msg.get_width() //
+                2, WINDOW.centery - Pause_msg.get_height()//2))
