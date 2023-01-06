@@ -69,7 +69,7 @@ if __name__ == '__main__':
                         sys.exit()
                     if cmds[0] == 'glider':
                         cell.game_of_life.createGlier()
-                    if cmds[0] == 'spaceShip':
+                    if cmds[0] == 'spaceship':
                         cell.game_of_life.createSpaceShip()
                     if cmds[0] == 'bar':
                         cell.game_of_life.createBar()

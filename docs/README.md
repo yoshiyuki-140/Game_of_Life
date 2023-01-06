@@ -14,7 +14,7 @@ Modules
 | pygame            | 1.9.6 | -                         |
 | [pygame_textinput][1]  | -     | [Mr.'Eisuke Okazaki'][2]   |
 
-Install
+Download
 ---
 
 - Windows : windows 11  
@@ -22,10 +22,15 @@ Install
     It might raise windows or browser seculity error.
 
 - Other OS  
-    Sorry...
+    Sorry...  
+    But, you might be able to use this app by using "python" or "python3" command against "main.py" in "src" dir.
 
 Usage
 ---
+
+- Execution  
+On the "dist" folder, just click main.exe.
+Or on the "dist" dir of powershell, You can use "start main.exe" to execute this app.
 
 | Command | Behavior |
 | :------------ | :------------------------------------------- |
