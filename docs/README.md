@@ -56,7 +56,8 @@ python3 main.py
 'pause'コマンドを使用してからでないと,変更が実感できないかも,というのも周りのセルが死んでいたら
 そのセルはすぐに死ぬから.
 
-![demoVideo](https://github.com/yoshiyuki-140/game_of_life/blob/main/docs/demo.gif)
+![demoVideo](https://github.com/yoshiyuki-140/game_of_life/blob/main/docs/demo.gif)  
+
 [1]:https://github.com/DYGV/pygame_textinput
 [2]:https://github.com/DYGV
 [3]:https://github.com/yoshiyuki-140/game_of_life/releases
