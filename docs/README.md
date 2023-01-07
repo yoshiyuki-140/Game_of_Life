@@ -6,6 +6,7 @@ CONTENTS
 
 I made "Conway's LifeGame" by "pygame_textinput" and "pygame" which is python's module.
 
+
 Modules
 ---
 
@@ -13,17 +14,6 @@ Modules
 | :---------------- | :---- | :------------------------ |   
 | pygame            | 1.9.6 | -                         |
 | [pygame_textinput][1]  | -     | [Mr.'Eisuke Okazaki'][2]   |
-
-Download
----
-
-- Windows : windows 11  
-    [Windows 11][3]  
-    It might raise windows or browser seculity error.
-
-- Other OS  
-    Sorry...  
-    But, you might be able to use this app by using "python" or "python3" command against "main.py" in "src" dir.
 
 Usage
 ---
@@ -52,4 +42,3 @@ Demo Video
 
 [1]:https://github.com/DYGV/pygame_textinput
 [2]:https://github.com/DYGV
-[3]:https://github.com/yoshiyuki-140/game_of_life/releases
