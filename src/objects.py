@@ -7,8 +7,6 @@ from random import choice
 from params import *
 
 
-# cell の オブジェクト update メソッドで screenにblitする。
-# 画面に対する描写自体は、main streamで行う(pygame.display.update()メソッドを使用)。
 class Cell(pygame.sprite.Sprite):
     def __init__(self) -> None:
         super().__init__()
@@ -34,11 +32,8 @@ class Cell(pygame.sprite.Sprite):
                     pygame.draw.rect(self.screen, White, self.rects[y][x])
 
 
-# Game rules
 class GameOfLife:
-    """
-    このライフゲームの要となる法則を定義している。
-    """
+    """lifeGame's rule"""
 
     def __init__(self, WORLD_SIZE: tuple):
         #世界の大きさdefoultで10
@@ -53,7 +48,7 @@ class GameOfLife:
 
         self.count = 0
 
-    def main_algorithm(self):
+    def update(self):
         self.previous_world = deepcopy(self.world)
         self.change_world()
 
@@ -62,9 +57,6 @@ class GameOfLife:
             self.world[15][i+20] = True
 
     def createGlier(self):
-        """
-        conway's game of life における グライダーを作成する
-        """
 
         self.world[1][1] = True
         self.world[1][2] = False
@@ -77,15 +69,10 @@ class GameOfLife:
         self.world[3][3] = False
 
     def resetWorld(self):
-        """world init command
-        """
         self.world = [[False for x in range(
             self.WORLD_SIZE[0])] for y in range(self.WORLD_SIZE[1])]
 
     def setRandom(self):
-        """
-        世界の状態をカオスに初期化する
-        """
         self.world = [[choice(self.true_or_false) for i in range(
             self.WORLD_SIZE[0])] for j in range(self.WORLD_SIZE[1])]
 
@@ -95,23 +82,20 @@ class GameOfLife:
         """
         for i in range(self.WORLD_SIZE[1]):
             for j in range(self.WORLD_SIZE[0]):
-                self.tmp_world[i][j] = self.life_or_death(j, i)
+                self.tmp_world[i][j] = self.liveOrdie(j, i)
         self.world = deepcopy(self.tmp_world)
 
     def toggle_object(self, x, y):
-        """ ガウス平面の (x,y)座標 として扱え
-
+        """
         Args:
-            x (int): 座標データなので1以上
-            y (int): 座標データなので1以上
+            x (int): coordinate of x axis
+            y (int): coordinate of y axis
         """
         self.world[y-1][x-1] = not self.world[y-1][x-1]
 
-    def life_or_death(self, x, y):
-        """次の時代lifeならTrueを返すdeathならFalseをかえす
-        """
+    def liveOrdie(self, x, y):
 
-        self.neighbor_count(x, y)
+        self.countLivingCell(x, y)
         # 最後のジャッジ変更した
         if self.world[y][x]:
             if self.count == 2 or self.count == 3:
@@ -143,7 +127,7 @@ class GameOfLife:
                     continue
                 self.world[y+yi][x+xi] = False
                     
-    def neighbor_count(self, x, y):
+    def countLivingCell(self, x, y):
         """周辺の状態をカウントする
         """
         self.count = 0

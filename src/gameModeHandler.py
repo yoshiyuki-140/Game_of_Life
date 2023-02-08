@@ -13,7 +13,7 @@ def start():
     screen.blit(Start_msg, (WINDOW.centerx - Start_msg.get_width() //
                 2, WINDOW.centery - Start_msg.get_height()//2))
 
-def showStartScreen():
+def displayStartScreen():
     running = True
     while running:
         start()
@@ -26,7 +26,6 @@ def showStartScreen():
                 sys.exit()
 
         pygame.display.flip()
-    #
 
 def pause():
     screen = pygame.display.get_surface()

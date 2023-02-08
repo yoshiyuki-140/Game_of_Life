@@ -21,7 +21,7 @@ if __name__ == '__main__':
     pygame.display.set_caption('The game of life')
 
     # by gameModeHandler
-    showStartScreen()
+    displayStartScreen()
 
     screen.fill(Black)
     cell = Cell()
@@ -56,7 +56,7 @@ if __name__ == '__main__':
                         #
                         if cell.rects[y][x].contains(mouse_rect):
                             cell.game_of_life.toggle_object(x+1, y+1)
-            # 各種コマンドの処理
+            # inputed command judge
             if event.type == pygame.USEREVENT:
                 cmds = event.Text.rstrip('\n').split(" ")
                 if len(cmds) == 1:
@@ -77,7 +77,7 @@ if __name__ == '__main__':
                         cell.game_of_life.setRandom()
                     if cmds[0] == 'clear':
                         cell.game_of_life.resetWorld()
-                # arg cmds[0]s
+                # 
                 if len(cmds) > 1:
                     if len(cmds) >= 3 and cmds[0] == 'spaceShip':
                         cell.game_of_life.createSpaceShip(
@@ -85,14 +85,13 @@ if __name__ == '__main__':
 
         #
         if game_status:
-            cell.game_of_life.main_algorithm()
+            cell.game_of_life.update()
             cell.update()
         else:
             cell.update()
             pause()
 
-        # ここの書き方下手だよね
-        # textboxの背景をつけるのとそのblit
+        # I don't know dirty rect update method
         text_box.update(events)
         rectOfTextBox = text_box.get_surface().get_rect()
         rectOfTextBox.topleft = 10,550

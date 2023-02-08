@@ -5,10 +5,10 @@ import pygame
 # Parameters
 WINDOW = pygame.Rect(0, 0, 1000, 600)
 WORLD_SIZE = '100x60'
-WORLD_SIZE = [int(f) for f in WORLD_SIZE.split('x')]  # <- return list object
+WORLD_SIZE = [int(f) for f in WORLD_SIZE.split('x')]
 LINE_WIDTH = 1
 FPS = 60
-game_status = True  # when this status is True, any ells will be updated
+game_status = True
 
 
 # Colors
