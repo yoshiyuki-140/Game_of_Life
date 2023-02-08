@@ -33,3 +33,4 @@ def pause():
     Pause_msg = font.render("PAUSE", True, Blue)
     screen.blit(Pause_msg, (WINDOW.centerx - Pause_msg.get_width() //
                 2, WINDOW.centery - Pause_msg.get_height()//2))
+    

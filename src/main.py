@@ -77,8 +77,15 @@ if __name__ == '__main__':
                         cell.game_of_life.setRandom()
                     if cmds[0] == 'clear':
                         cell.game_of_life.resetWorld()
-                # 
+                #
                 if len(cmds) > 1:
+                    if len(cmds) == 2:
+                        # このスキップコマンドはスキップする回数をあげすぎると処理落ちします
+                        if cmds[0] == 'skip':
+                            for _ in range(int(cmds[1])):
+                                cell.game_of_life.update()
+                                cell.update()
+
                     if len(cmds) >= 3 and cmds[0] == 'spaceShip':
                         cell.game_of_life.createSpaceShip(
                             int(cmds[1]), int(cmds[2]))
@@ -94,9 +101,9 @@ if __name__ == '__main__':
         # I don't know dirty rect update method
         text_box.update(events)
         rectOfTextBox = text_box.get_surface().get_rect()
-        rectOfTextBox.topleft = 10,550
-        screen.fill(Green,rectOfTextBox)
-        screen.blit(text_box.get_surface(),rectOfTextBox.topleft)
+        rectOfTextBox.topleft = 10, 550
+        screen.fill(Green, rectOfTextBox)
+        screen.blit(text_box.get_surface(), rectOfTextBox.topleft)
 
         pygame.display.update()
 
