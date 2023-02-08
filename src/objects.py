@@ -21,7 +21,6 @@ class Cell(pygame.sprite.Sprite):
                         for y in range(WORLD_SIZE[1])]
 
         self.game_of_life = GameOfLife(WORLD_SIZE=WORLD_SIZE)
-        self.game_of_life.createGlier()
 
     def update(self):
         for y in range(WORLD_SIZE[1]):
