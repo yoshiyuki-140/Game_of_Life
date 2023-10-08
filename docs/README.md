@@ -11,7 +11,7 @@ I made "Conway's LifeGame" by "pygame_textinput" and "pygame" which is python's 
 
 ## LANGUAGE
 
-[![Languages](https://skillicons.dev/icons?i=java,c,py&theme=light)](https://skillicons.dev)
+[![Languages](https://skillicons.dev/icons?i=py&theme=light)](https://skillicons.dev)
 
 
 
