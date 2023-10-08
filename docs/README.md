@@ -1,22 +1,28 @@
-game_of_life
-===
+# lifegame-rich-py
 
-CONTENTS
----
+## :warning: 
+- This package is not maintained.
+- [MOVETO](https://github.com/yoshiyuki-140/lifegames)
+
+## CONTENTS
 
 I made "Conway's LifeGame" by "pygame_textinput" and "pygame" which is python's module.
 
 
-Modules
----
+## LANGUAGE
+
+[![Languages](https://skillicons.dev/icons?i=java,c,py&theme=light)](https://skillicons.dev)
+
+
+
+## Modules
 
 | Module | ver | Author | 
 | :---------------- | :---- | :------------------------ |   
 | pygame            | 1.9.6 | -                         |
 | [pygame_textinput][1]  | -     | [Mr.'Eisuke Okazaki'][2]   |
 
-Usage
----
+## Usage
 
 - Execution  
 On the "dist" folder, just click main.exe.
